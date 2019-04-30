@@ -65,7 +65,7 @@ int main(int argc, const char * argv[]) {
             }else if([userInput isEqualToString:@"show"]){
                 NSString* idToLookUp = [myInputCollection inputForPrompt:@"Please enter an id to look up, starting from 0"];
                 NSInteger idValue = [idToLookUp integerValue];
-                if (myContactList.contactList[idValue] != nil) {
+                if (idValue < [myContactList.contactList count]) {
                     Contact* contact = myContactList.contactList[idValue];
                     NSLog(@"%@",contact.name);
                     NSLog(@"%@", contact.email);
@@ -73,6 +73,7 @@ int main(int argc, const char * argv[]) {
                     NSLog(@"not found");
                 }
             }else if ([userInput containsString:@"find"]){
+                NSLog(@"inside find");
                 NSString* searchTerm = [userInput substringFromIndex:5];
                 for (Contact* contact in myContactList.contactList) {
                     if ([contact.name containsString:searchTerm] || [contact.email containsString:searchTerm]) {
